@@ -1,16 +1,34 @@
+buildscript {
+  repositories {
+    maven { url 'http://repo.spring.io/plugins-release' }
+  }
+  dependencies {
+    classpath 'io.spring.gradle:propdeps-plugin:0.0.9.RELEASE'
+  }
+}
+
 plugins {
   id "io.spring.dependency-management" version "1.0.4.RELEASE"
+}
+
+configure(allprojects) {
+  apply plugin: 'propdeps'
+  apply plugin: 'propdeps-maven'
+  apply plugin: 'propdeps-idea'
+  apply plugin: 'propdeps-eclipse'
 }
 
 dependencies {
   compile 'org.springframework.boot:spring-boot-starter'
   compile project(':hello-lib')
 
+  optional 'org.springframework.boot:spring-boot-configuration-processor'
+
   testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
 dependencyManagement {
-  imports { 
+  imports {
     mavenBom("org.springframework.boot:spring-boot-dependencies:1.5.9.RELEASE")
   }
 }
