@@ -11,10 +11,9 @@ public class HelloAppApplication {
     SpringApplication.run(HelloAppApplication.class, args);
   }
 
-  @Bean
+//  @Bean
   public HelloService helloService() {
     return new ConsoleHelloService("Hello", "!");
   }
-
 
 }
